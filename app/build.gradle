@@ -1,0 +1,66 @@
+plugins {
+    id 'com.android.application'
+}
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
+android {
+    compileSdkVersion 30 
+    buildToolsVersion "30.0.2"
+    defaultConfig {
+        applicationId "com.zte.mdm.custom.device"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 11103
+        versionName "1.1.103"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            //  debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    if (outputFileName.endsWith('.apk')) {
+                        //这里修改apk文件名
+                        outputFileName = "${defaultConfig.applicationId}-${defaultConfig.versionCode}-${defaultConfig.versionName}-${releaseTime()}.apk"
+                    }
+                }
+            }
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("D:\\WorkSpace\\ZTE\\zte.  jks")
+            storePassword "222222"
+            keyAlias "zte"
+            keyPassword "zte123"
+        }
+        debug {
+            storeFile file("D:\\WorkSpace\\ZTE\\zte.jks")
+            storePassword "222222"
+            keyAlias "zte"  
+            keyPassword "zte123"
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation files('libs\\ztemdm_v1.0.2.jar')
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}

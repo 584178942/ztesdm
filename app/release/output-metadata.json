@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.zte.mdm.custom.device",
+  "variantName": "processReleaseResources",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 11103,
+      "versionName": "1.1.103",
+      "outputFile": "com.zte.mdm.custom.device-11103-1.1.103-20210208.apk"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/lock">
+
+    <LinearLayout
+        android:layout_marginTop="235dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lock_TV"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="终端强制锁定，如需解锁请与管理员联系"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:padding="10dp" />
+        <Button
+            android:id="@+id/btn2"
+            android:visibility="gone"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="解锁">
+        </Button>
+    </LinearLayout>
+</LinearLayout>

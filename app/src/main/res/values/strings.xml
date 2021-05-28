@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ztesdm</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_lock">LockActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <!-- 自定义全屏主题 -->
+    <style name="CustomizedFullScreen">
+        <item name="android:windowNoTitle">true</item>//无标题
+        <item name="android:windowActionBar">false</item>//无ActionBar
+        <item name="android:windowFullscreen">true</item>//全屏即无通知栏
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <string name="url_api">http://zw-api.siyu-info.com:9909/api/</string>
+    <string name="url_apiTest">https://sdm-zw-tmp.siyu-info.com/apk/</string>
+    <string name="url_apiTestTWO">http://192.168.2.193:8082/</string>
+    <string name="sha256">A6D7148120B5896A5B7678BE21DCE41C7D707574BDACEBAC9F824DD0E86D527B</string>
+    <string name="pu_key">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDN4SRt3ktsz4m944msmZenI/AncR5tIoRiN9riMQ0SB0KBsApXIUDuZ+iT3/mAoSzaKmlAd2B4C4o86cIN8MDA9hoZ+nBl/Vm3gqTZksie45unwxRXxGoCX+LXqHhidrhtZQD++O7TtPT4f5VOp9Ury4D35bgdMHr0PBiuEQdSVwIDAQAB</string>
+    <string name="pr_key">MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJFBnk78A4CN5gBpIV/pGOGqi/CzvwjvXoj2gYXtbEIg+ZxpRrVi7Is6dwIK4+xrDr35ExaN1s4GnyF3g88z93iYpM5URhQTRJ/GGENNlozkLNARRdTJfLuJxBMZHnAGOtuNTXIcIo5/k8klllBYHTqG6xIVnjRN0vsV2UGlnW7VAgMBAAECgYBMoT9xD8aRNUrXgJ7YyFIWCzEUZN8tSYqn2tPt4ZkxMdA9UdS5sFx1/vv1meUwPjJiylnlliJyQlAFCdYBo7qzmib8+3Q8EU3MDP9bNlpxxC1go57/q/TbaymWyOk3pK2VXaX+8vQmllgRZMQRi2JFBHVoep1f1x7lSsf2TpipgQJBANJlO+UDmync9X/1YdrVaDOi4o7g3w9u1eVq9B01+WklAP3bvxIoBRI97HlDPKHx+CZXeODx1xj0xPOK3HUz5FECQQCwvdagPPtWHhHx0boPF/s4ZrTUIH04afuePUuwKTQQRijnl0eb2idBe0z2VAH1utPps/p4SpuT3HI3PJJ8MlVFAkAFypuXdj3zLQ3k89A5wd4Ybcdmv3HkbtyccBFALJgs+MPKOR5NVaSuF95GiD9HBe4awBWnu4B8Q2CYg54F6+PBAkBKNgvukGyARnQGc6eKOumTTxzSjSnHDElIsjgbqdFgm/UE+TJqMHmXNyyjqbaA9YeRc67R35HfzgpvQxHG8GN5AkEAxSKOlfACUCQ/CZJovETMmaUDas463hbrUznp71uRMk8RP7DY/lBnGGMeUeeZLIVK5X2Ngcp9nJQSKWCGtpnfLQ==</string>
+</resources>
