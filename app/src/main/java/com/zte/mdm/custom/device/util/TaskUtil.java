@@ -72,7 +72,7 @@ public class TaskUtil {
      * 安装apk
      * @param installStr 下载String
      */
-    private void installApp(String installStr){
+    public static void installApp(String installStr){
         InstallBean installBean = new Gson().fromJson(installStr, InstallBean.class);
         if (!TextUtils.isEmpty(installBean.getApkUrl())|| !TextUtils.isEmpty(installBean.getPkgName())) {
             String pkg2 = installBean.getPkgName();
@@ -219,14 +219,14 @@ public class TaskUtil {
     public static String getImsiCode() {
         String[] string =  pm.getDeviceInfo();
         if (null == string[11]){
-            return "null";
+            return "";
         }
         return string[11];
     }
     public static String getImsiCode2() {
         String[] string =  pm.getDeviceInfo();
         if (null == string[12]){
-            return "null";
+            return "";
         }
         return string[12];
     }

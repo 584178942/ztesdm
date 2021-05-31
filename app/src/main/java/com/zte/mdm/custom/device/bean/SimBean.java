@@ -19,13 +19,22 @@ public class SimBean {
     private int state;
     private String message;
     private String draw;
-    private List<DataBean> data;
+    private Object data;
     private int min;
     private int max;
     private int interestScreenmin;
     private int interestScreenmax;
     private boolean uninstallCert;
     private Object cert;
+    private Object operationType;
+
+    public Object getOperationType() {
+        return operationType;
+    }
+
+    public void setOperationType(Object operationType) {
+        this.operationType = operationType;
+    }
 
     public int getState() {
         return state;
@@ -51,11 +60,11 @@ public class SimBean {
         this.draw = draw;
     }
 
-    public List<DataBean> getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(Object data) {
         this.data = data;
     }
 

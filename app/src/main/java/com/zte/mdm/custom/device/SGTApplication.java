@@ -1,11 +1,11 @@
 package com.zte.mdm.custom.device;
 
 import android.app.Application;
-import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import com.zte.mdm.custom.device.bean.BdLocationVo;
 import com.zte.mdm.custom.device.receiver.AppInstallReceiver;
 import com.zte.mdm.custom.device.receiver.BatteryBroadcastReceiver;
 import com.zte.mdm.custom.device.receiver.NetworkChangedReceiver;
@@ -13,15 +13,11 @@ import com.zte.mdm.custom.device.receiver.ScreenStatusReceiver;
 import com.zte.mdm.custom.device.receiver.SimStateReceiver;
 import com.zte.mdm.custom.device.util.AppConstants;
 import com.zte.mdm.custom.device.util.StorageUtil;
+import com.zte.mdm.custom.device.utils.BdLocationUtil;
 import com.zte.mdm.custom.device.utils.LogUtils;
-
-import java.util.List;
-
 import ga.mdm.PolicyManager;
-
 import static com.zte.mdm.custom.device.util.AppConstants.IS_LOCK;
 import static com.zte.mdm.custom.device.util.AppConstants.LOCK;
-import static com.zte.mdm.custom.device.util.AppConstants.MODE_1;
 import static com.zte.mdm.custom.device.util.AppConstants.UN_LOCK;
 import static com.zte.mdm.custom.device.util.TaskUtil.startLockActivity;
 import static com.zte.mdm.custom.device.util.TaskUtil.startPollAlarmReceiver;
@@ -40,7 +36,7 @@ public class SGTApplication extends Application {
     private BatteryBroadcastReceiver batteryBroadcastReceiver;
     private BroadcastReceiver mLocalBroadcastReceiver;
     public static Application contextApp;
-
+    private static BdLocationUtil bdLocationUtil;
     public static PolicyManager policyManager;
     public static Context getContextApp() {
         return ourInstance;
@@ -59,6 +55,7 @@ public class SGTApplication extends Application {
         }
         startPollAlarmReceiver(true);
         contractStatusCheck();
+        getBdLocationUtil();
     }
 
     private void setContextApp(Application application) {
@@ -110,6 +107,10 @@ public class SGTApplication extends Application {
 //        LocalBroadcastManager.getInstance(this).registerReceiver(this.mLocalBroadcastReceiver, intentFilter);
     }
 
+    public static BdLocationVo getBdLocationUtil() {
+        bdLocationUtil = BdLocationUtil.getInstance(contextApp);
+        return bdLocationUtil.getLocation();
+    }
 
     private void registerReceiver(){
         IntentFilter intentFilter = new IntentFilter();

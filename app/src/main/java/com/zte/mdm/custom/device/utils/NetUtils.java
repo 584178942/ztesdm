@@ -31,7 +31,6 @@ public class NetUtils {
     private static final byte[] LOCKER = new byte[0];
     private static NetUtils mInstance;
     private OkHttpClient mOkHttpClient;
-
     private NetUtils() {
         if (IS_TEST){
             appUrl = SGTApplication.getContextApp().getString(R.string.url_apiTest);
@@ -91,9 +90,9 @@ public class NetUtils {
             String oldBodyStr = requestBuffer.readUtf8();
             requestBuffer.close();
 
-           // LogUtils.info("bodyParams", new Gson().toJson(bodyParams));
+            LogUtils.info("bodyParams", new Gson().toJson(bodyParams));
             String encrptyStr = RsaUtils.encryptByPublicKey(oldBodyStr);
-           // LogUtils.info("encrptyStr",encrptyStr);
+           // LogUtils.info("encrptyStr  ",encrptyStr);
             MediaType mediaType = MediaType.Companion.parse("application/json;charset=utf-8");
             RequestBody requestBody = RequestBody.Companion.create(encrptyStr,mediaType);
 

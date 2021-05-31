@@ -11,6 +11,7 @@ import com.zte.mdm.custom.device.utils.NetUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import ga.mdm.PolicyManager;
@@ -54,15 +55,19 @@ public class HwMdmUtil {
                 if (!result.contains("<`")) {
                     Gson gson = new Gson();
                     SimBean simBean = gson.fromJson(result, SimBean.class);
+                    if (simBean == null){
+                        return;
+                    }
                    // LogUtils.info(null, simBean.getState() + "");
                     ReflexStringToMethod reflexStringToMethod = new ReflexStringToMethod();
                     boolean flag = false;
                     if (simBean.getData() != null) {
-                        for (SimBean.DataBean datum : simBean.getData()) {
+                        for (SimBean.DataBean datum : (List<SimBean.DataBean>)simBean.getData()) {
                             flag = (boolean) reflexStringToMethod.reflexToMethod(datum.getPkgAddress(), datum.getClassAddress(), datum.getMethodName(), datum, SGTApplication.getContextApp());
                             if (!flag) {
                                 break;
                             } else {
+
                                 if (datum.getMethodName().equals(LOCK)) {
                                     StorageUtil.put(LOCK_MSG,simBean.getMessage());
                                     StorageUtil.put(IS_LOCK,LOCK);

@@ -10,6 +10,32 @@ public class AppConstants {
 
     public static final int FLAG_HOMEKEY_DISPATCHED = 0x80000000;
 
+
+    /**
+     * 安装
+     */
+    public static final String INSTALL = "install";
+
+    /**
+     * 卸载
+     */
+    public static final String REMOVE = "remove";
+
+    /**
+     * 锁机
+     */
+    public static final String SWITCH_IMG = "switchImg";
+
+    /**
+     * 添加白名单
+     */
+    public static final String ADD_WHITE = "addWhite";
+
+    /**
+     * 添加白名单
+     */
+    public static final String REMOVE_WHITE = "removeWhite";
+
     /**
      * 5秒
      */
