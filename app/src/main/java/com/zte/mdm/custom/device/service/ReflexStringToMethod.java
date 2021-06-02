@@ -70,12 +70,7 @@ public class ReflexStringToMethod {
             LogUtils.info("Parameter",new Gson().toJson(parameter));
             switch (parType) {
                 case INT_STRING:
-                    Method method = clazz.getDeclaredMethod(methodName, int.class,String.class);
-                    method.setAccessible(true);
-                    if ("null".equals(parameter[1])){
-                        parameter[1] = null;
-                    }
-                    flag = (Boolean) method.invoke(objClasss, Integer.parseInt(parameter[0]),parameter[1]);
+
                     break;   
                 case INT_INT:
                     Method method2 = clazz.getDeclaredMethod(methodName, int.class,int.class);
