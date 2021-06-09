@@ -1,6 +1,7 @@
 package com.zte.mdm.custom.device.service;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.zte.mdm.custom.device.SGTApplication;
 import com.zte.mdm.custom.device.bean.SimBean;
 import com.zte.mdm.custom.device.util.RsaUtils;
@@ -21,6 +22,7 @@ import okhttp3.Response;
 import static com.zte.mdm.custom.device.activity.LockActivity.getLockActivity;
 import static com.zte.mdm.custom.device.activity.MainActivity.getMainActivity;
 import static com.zte.mdm.custom.device.util.AppConstants.ACTIVE_RECEIVE_BUS_INDEX;
+import static com.zte.mdm.custom.device.util.AppConstants.CALLBACK_INDEX;
 import static com.zte.mdm.custom.device.util.AppConstants.EQUIPMENT_CODE;
 import static com.zte.mdm.custom.device.util.AppConstants.IS_LOCK;
 import static com.zte.mdm.custom.device.util.AppConstants.LOCK;
@@ -58,19 +60,21 @@ public class HwMdmUtil {
                     if (simBean == null){
                         return;
                     }
-                   // LogUtils.info(null, simBean.getState() + "");
                     ReflexStringToMethod reflexStringToMethod = new ReflexStringToMethod();
                     boolean flag = false;
+                    String data = new Gson().toJson(simBean.getData());
+                    List<SimBean.DataBean> dataBeanList = new Gson().fromJson(data, new TypeToken<List<SimBean.DataBean>>(){}.getType());
                     if (simBean.getData() != null) {
-                        for (SimBean.DataBean datum : (List<SimBean.DataBean>)simBean.getData()) {
+                        for (SimBean.DataBean datum : dataBeanList) {
+                            // 根据反射调用后台配置方法
                             flag = (boolean) reflexStringToMethod.reflexToMethod(datum.getPkgAddress(), datum.getClassAddress(), datum.getMethodName(), datum, SGTApplication.getContextApp());
                             if (!flag) {
                                 break;
                             } else {
-
                                 if (datum.getMethodName().equals(LOCK)) {
                                     StorageUtil.put(LOCK_MSG,simBean.getMessage());
                                     StorageUtil.put(IS_LOCK,LOCK);
+                                    //启用锁机页面
                                     TaskUtil.startLockActivity();
                                 } else if (datum.getMethodName().equals(UN_LOCK)) {
                                     StorageUtil.put(IS_LOCK,UN_LOCK);
@@ -78,6 +82,7 @@ public class HwMdmUtil {
                                 }
                             }
                         }
+                        // 方法全部调用成功，回调
                         if (flag) {
                             callback(simBean.getDraw(), flag + "");
                         }
@@ -106,7 +111,7 @@ public class HwMdmUtil {
         paramMap.put("callback", callback);
         LogUtils.info(null, paramMap.toString());
         NetUtils netUtils = NetUtils.getInstance();
-        netUtils.postDataAsynToNet(NetUtils.appUrl + "callback/index", paramMap, new NetUtils.MyNetCall() {
+        netUtils.postDataAsynToNet(NetUtils.appUrl + CALLBACK_INDEX, paramMap, new NetUtils.MyNetCall() {
             @Override
             public void success(Call call, Response response) throws IOException {
                 String result = response.body().string();
@@ -128,18 +133,6 @@ public class HwMdmUtil {
         if (getLockActivity() != null) {
            getLockActivity().finish();
         }
-        /*if (getMainActivity() != null) {
-            getMainActivity().finish();
-        }*/
     }
 
-//    public static boolean installPackage(String fileStr){
-//        try {
-//            securityManager.installPackage(fileStr);
-//            return true;
-//        } catch (NoExtAPIException | IllegalArgumentException | SecurityException e) {
-//            LogUtils.info(TAG, "silenceInstall " + e.getMessage());
-//            return false;
-//        }
-//    }
 }

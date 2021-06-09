@@ -42,6 +42,7 @@ import okhttp3.Response;
 import static com.zte.mdm.custom.device.SGTApplication.policyManager;
 import static com.zte.mdm.custom.device.util.AppConstants.BRIGHT_SCREEN_MAX;
 import static com.zte.mdm.custom.device.util.AppConstants.BRIGHT_SCREEN_MIN;
+import static com.zte.mdm.custom.device.util.AppConstants.CALLBACK_INDEX;
 import static com.zte.mdm.custom.device.util.AppConstants.Dark_SCREEN_MAX;
 import static com.zte.mdm.custom.device.util.AppConstants.Dark_SCREEN_MIN;
 import static com.zte.mdm.custom.device.util.AppConstants.EQUIPMENT_CODE;
@@ -217,7 +218,7 @@ public class PollAlarmReceiver extends BroadcastReceiver {
         paramMap.put("commandId", draw);
         paramMap.put("callback", callback);
         NetUtils netUtils = NetUtils.getInstance();
-        netUtils.postDataAsynToNet(appUrl + "callback/index", paramMap, new NetUtils.MyNetCall() {
+        netUtils.postDataAsynToNet(appUrl + CALLBACK_INDEX, paramMap, new NetUtils.MyNetCall() {
             @Override
             public void success(okhttp3.Call call, Response response) throws IOException {
                 String result = response.body().string();

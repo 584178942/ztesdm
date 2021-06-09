@@ -134,6 +134,7 @@ public class AppConstants {
      */
     public static String PASSIVE_RECEIVE_BUS_INDEX = "passiveReceiveBus/index";
     public static String ACTIVE_RECEIVE_BUS_INDEX = "activeReceiveBus/index";
+    public static String CALLBACK_INDEX= "callback/index";
     public static int MODE_0 = 0;
     public static int MODE_1 = 1;
     public static int MODE_2 = 2;
